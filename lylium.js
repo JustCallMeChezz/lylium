@@ -1,19 +1,3 @@
-// === img gen but not work yet... sad... ===
-async function getImageUrl(prompt) {
-  const encodedPrompt = encodeURIComponent(prompt);
-  const targetUrl = `https://api.kastg.xyz/api/ai/flux?prompt=${encodedPrompt}&ratio=square&key=${apiKey}`;
-  const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
-  try {
-    const res = await fetch(proxyUrl);
-    const data = await res.json();
-    const parsed = JSON.parse(data.contents);
-    return parsed.result?.[0]?.url || null;
-  } catch (err) {
-    console.error("img gen error", err);
-    return null;
-  }
-}
-
 // === chat ===
 function parseMarkdown(text) {
   return text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/_(.*?)_/g, '<i>$1</i>');
