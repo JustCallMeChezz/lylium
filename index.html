@@ -1,260 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="google" content="notranslate" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <title>Lylium</title>
-      <meta property="og:title" content="Lylium AI" />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://justcallmechezz.github.io/lylium/" />
-      <meta property="og:image" content="https://raw.githubusercontent.com/JustCallMeChezz/justcallmechezz.github.io/main/icons/lylium.png" />
-      <meta property="og:description" content="an ai assistant that maybe can help u with anything u ask... or u can just chat with it when u bored..." />
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet"/>
-      <meta name="theme-color" content="#e0bbe4" />
-      <link href="https://fonts.googleapis.com/css2?family=Short+Stack&display=swap" rel="stylesheet"/>
-      <link rel="apple-touch-icon" href="icons/lylium.png" />
-      <link rel="icon" type="image/png" href="icons/lylium.png" />
-      <link rel="manifest" href="/icons/site.webmanifest" />
-      <meta name="apple-mobile-web-app-title" content="Lylium" />
-   </head>
-   <body>
-      <style>
-         body {
-         margin: 0;
-         font-family: 'Short Stack', cursive;
-         background-color: #f5f0f7;
-         color: #4b2f3d;
-         display: flex;
-         flex-direction: column;
-         height: 100vh;
-         transition: filter 0.6s ease, background-color 0.6s ease;
-         -webkit-tap-highlight-color: transparent;
-         }
-         .header {
-         display: flex;
-         align-items: center;
-         padding: 10px;
-         background-color: #f5f0f7;
-         border-radius: 0px 0px 20px 20px;
-         box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-         }
-         .header .title {
-         flex-grow: 1;
-         font-size: 18px;
-         font-weight: bold;
-         }
-         .header .icons i {
-         margin-left: 15px;
-         font-size: 20px;
-         }
-         .icon-link {
-         color: inherit;
-         -webkit-tap-highlight-color: transparent;
-         }
-         .username {
-         font-weight: bold;
-         font-size: 0.85em;
-         color: #c07fae;
-         margin-bottom: 4px;
-         display: flex;
-         align-items: center;
-         }
-         .tag {
-         margin-left: 8px;
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         height: 20px;
-         }
-         .tag span {
-         background-color: #c07fae;
-         color: #f5f0f7;
-         padding: 2px 8px;
-         border-radius: 8px;
-         font-size: 10px;
-         }
-         .content {
-         padding: 20px;
-         padding-bottom: 100px;
-         flex-grow: 1;
-         overflow-y: auto;
-         }
-         .date {
-         display: flex;
-         justify-content: center;
-         margin: 20px 0;
-         }
-         .date span {
-         background-color: #c07fae;
-         color: #f5f0f7;
-         padding: 5px 10px;
-         border-radius: 10px;
-         font-size: 14px;
-         }
-         .message {
-         display: flex;
-         align-items: flex-end;
-         margin-bottom: 30px;
-         }
-         .message img {
-         width: 40px;
-         height: 40px;
-         border-radius: 50%;
-         margin-right: 10px;
-         }
-         .message .bubble {
-         background-color: #e6ccf0;
-         border-radius: 12px;
-         padding: 10px;
-         max-width: 70%;
-         opacity: 0;
-         animation: bubbleIn 0.3s ease forwards;
-         }
-         .message.right {
-         justify-content: flex-end;
-         }
-         .message.right img {
-         order: 2;
-         margin-left: 10px;
-         margin-right: 0;
-         }
-         .message.right .bubble {
-         background-color: #d7a8c6;
-         }
-         .footer {
-         display: flex;
-         align-items: center;
-         padding: 10px 15px;
-         background-color: #f5f0f7;
-         border-radius: 30px;
-         box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-         position: fixed;
-         bottom: 20px;
-         left: 50%;
-         transform: translateX(-50%);
-         width: 90%;
-         max-width: 600px;
-         z-index: 99;
-         }
-         .footer i {
-         font-size: 24px;
-         color: #c07fae;
-         }
-         .footer input {
-         flex-grow: 1;
-         border: none;
-         outline: none;
-         background-color: #f5f0f7;
-         font-size: 16px;
-         }
-         .footer .send {
-         font-size: 24px;
-         margin-left: 10px;
-         cursor: pointer;
-         color: #c07fae;
-         }
-         .typing-dots {
-         display: inline-flex;
-         gap: 4px;
-         margin-top: 5px;
-         }
-         .typing-dots span {
-         width: 6px;
-         height: 6px;
-         background-color: #c07fae;
-         border-radius: 50%;
-         animation: jump 0.6s infinite;
-         }
-         .typing-dots span:nth-child(2) {
-         animation-delay: 0.1s;
-         }
-         .typing-dots span:nth-child(3) {
-         animation-delay: 0.2s;
-         }
-         @keyframes jump {
-         0%, 100% {
-         transform: translateY(0);
-         }
-         50% {
-         transform: translateY(-6px);
-         }
-         }
-         @keyframes bubbleIn {
-         0% {
-         opacity: 0;
-         transform: translateY(10px) scale(0.95);
-         }
-         100% {
-         opacity: 1;
-         transform: translateY(0) scale(1);
-         }
-         }
-         @keyframes fadeInText {
-         from {
-         opacity: 0;
-         }
-         to {
-         opacity: 1;
-         }
-         }
-         .message .bubble .text {
-         animation: fadeInText 0.6s ease-in;
-         }
-         body.grayscale-mode {
-         filter: grayscale(1);
-         transition: filter 0.6s;
-         background-color: #ddd;
-         }
-      </style>
-      <div class="header">
-         <div class="title">Lylium AI.</div>
-         <div class="icons">
-            <i id="theme"class="fa-solid fa-brush"></i>
-            <a href="https://github.com/JustCallMeChezz" target="_blank" class="icon-link">
-            <i class="fas fa-code"></i>
-            </a>
-         </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Lylium</title>
+    <meta property="og:title" content="Lylium AI" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://justcallmechezz.github.io/lylium/" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/JustCallMeChezz/justcallmechezz.github.io/main/icons/lylium.png" />
+    <meta property="og:description" content="an ai assistant that maybe can help u with anything u ask... or u can just chat with it when u bored..." />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet"/>
+    <meta name="theme-color" content="#e0bbe4" />
+    <link href="https://fonts.googleapis.com/css2?family=Short+Stack&display=swap" rel="stylesheet"/>
+    <link rel="apple-touch-icon" href="icons/lylium.png" />
+    <link rel="icon" type="image/png" href="icons/lylium.png" />
+    <link rel="manifest" href="/icons/site.webmanifest" />
+    <meta name="apple-mobile-web-app-title" content="Lylium" />
+    <link rel="stylesheet" href="lylium.css">
+  </head>
+  <body>
+    <div class="header">
+      <div class="title">Lylium AI.</div>
+      <div class="icons">
+        <i id="theme"class="fa-solid fa-brush"></i>
+        <a href="https://github.com/JustCallMeChezz" target="_blank" class="icon-link">
+        <i class="fas fa-code"></i>
+        </a>
       </div>
-      <div class="content">
-      <div class="date">
-         <span id="chat-date">today</span>
+    </div>
+    <div class="content">
+    <div class="date">
+      <span id="chat-date">today</span>
+    </div>
+    <div class="message">
+      <img alt="chats icon" height="40" src="/icons/lylium.png" width="40"/>
+      <div class="bubble">
+        <div class="username">
+          Lylium
+          <div class="tag"><span>AI</span></div>
+        </div>
+        <div class="text">
+          <div class="text" id="lyliumText"></div>
+          <script>
+            const lyliumText = document.getElementById("lyliumText");
+            const fullIntro = "hii! im lylium... nice to meet u... ask me anything...";
+            let i = 0;
+            function typeIntro() {
+              if (i < fullIntro.length) {
+                lyliumText.textContent += fullIntro[i++];
+                setTimeout(typeIntro, 30);
+              }
+            }
+            typeIntro();
+          </script>
+        </div>
       </div>
-      <div class="message">
-         <img alt="chats icon" height="40" src="/icons/lylium.png" width="40"/>
-         <div class="bubble">
-            <div class="username">
-               Lylium
-               <div class="tag"><span>AI</span></div>
-            </div>
-            <div class="text">
-               <div class="text" id="lyliumText"></div>
-               <script>
-                  const lyliumText = document.getElementById("lyliumText");
-                  const fullIntro = "hii! im lylium... nice to meet u... ask me anything...";
-                  let i = 0;
-                  function typeIntro() {
-                    if (i < fullIntro.length) {
-                      lyliumText.textContent += fullIntro[i++];
-                      setTimeout(typeIntro, 30);
-                    }
-                  }
-                  typeIntro();
-               </script>
-            </div>
-         </div>
-      </div>
-      <div class="footer">
-         <i class="far fa-smile"></i>
-         <input placeholder="Ask smth..." type="text" autocomplete="off" inputmode="text" style="margin-left: 8px"/>
-         <i class="fas fa-paperclip"></i>
-         <i class="fas fa-paper-plane send"></i>
-      </div>
-      <audio id="bubble-sound" src="/lyzz/sounds/getout.mp3" preload="auto"></audio>
-
-<script>document.write('<scr'+'ipt src="'+atob("bHlsaXVtLmx5")+'" type="text/javascript"><\/scr'+'ipt>');</script>
-<script>
-  document.write('<scr'+'ipt src="'+atob("bHlsaXVtLmpz")+'" type="text/javascript"><\/scr'+'ipt>');
-</script>
-   </body>
+    </div>
+    <div class="footer">
+      <i class="far fa-smile"></i>
+      <input placeholder="Ask smth..." type="text" autocomplete="off" inputmode="text" style="margin-left: 8px"/>
+      <i class="fas fa-paperclip"></i>
+      <i class="fas fa-paper-plane send"></i>
+    </div>
+    <audio id="bubble-sound" src="/lyzz/sounds/getout.mp3" preload="auto"></audio>
+    <script>
+      document.write('<scr' + 'ipt src="' + atob("aHR0cHM6Ly9qdXN0Y2FsbG1lY2hlenouZ2l0aHViLmlvL2x5bGl1bS9seWxpdW0ubHk=") + '" type="text/javascript"><\/scr' + 'ipt>');
+    </script>
+    <script>
+      document.write('<scr'+'ipt src="'+atob("bHlsaXVtLmpz")+'" type="text/javascript"><\/scr'+'ipt>');
+    </script>
+  </body>
 </html>
