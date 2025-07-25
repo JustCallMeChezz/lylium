@@ -27,7 +27,7 @@ async function sendMessage() {
   const content = document.querySelector('.content');
   const userMessage = document.createElement('div');
   userMessage.className = 'message right';
-  userMessage.innerHTML = `<img src="/icons/user.png"><div class="bubble"><div class="text">${messageText}</div></div>`;
+  userMessage.innerHTML = `<img src="./icons/user.png"><div class="bubble"><div class="text">${messageText}</div></div>`;
   content.appendChild(userMessage);
   input.value = '';
 
